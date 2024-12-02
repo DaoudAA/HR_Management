@@ -1,0 +1,47 @@
+<button (click)="toggleAddEmployeeForm()" class="add-employee-btn">Add Employee</button>
+
+<!-- Add Employee Form -->
+<form *ngIf="showAddEmployeeForm" (ngSubmit)="addEmployee()">
+  <h2>Add Employee</h2>
+  <div>
+    <label for="nom">Name:</label>
+    <input type="text" id="nom" [(ngModel)]="newEmployee.name" name="name" required />
+  </div>
+  <div>
+    <label for="prenom">First Name:</label>
+    <input type="text" id="prenom" [(ngModel)]="newEmployee.surname" name="surname" required />
+  </div>
+  <div>
+    <label for="positionDeTravail">Job:</label>
+    <input
+      type="text"
+      id="position"
+      [(ngModel)]="newEmployee.position"
+      name="position"
+      required
+    />
+  </div>
+  <div>
+    <label for="departement">Department:</label>
+    <input
+      type="text"
+      id="departement"
+      [(ngModel)]="newEmployee.departement"
+      name="departement"
+      required
+    />
+  </div>
+  <div>
+    <label for="salaire">Salary:</label>
+    <input type="number" id="salaire" [(ngModel)]="newEmployee.salary" name="salary" required />
+  </div>
+  <button type="submit">Save</button>
+  <button type="button" (click)="toggleAddEmployeeForm()">Cancel</button>
+</form>
+
+<div class="employee-directory">
+  <h1>Employee Directory</h1>
+  <div class="employee-cards">
+    <app-employee-card *ngFor="let emp of employees" [employee]="emp"(employeeDeleted)="onEmployeeDeleted($event)" (employeeUpdated)="onEmployeeUpdated($event)"></app-employee-card>
+  </div>
+</div>

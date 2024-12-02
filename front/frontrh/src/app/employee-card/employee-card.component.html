@@ -1,0 +1,55 @@
+<div class="card">
+    <img
+      src="https://images.inc.com/uploaded_files/image/1920x1080/getty_481292845_77896.jpg"
+      alt="{{ employee.name }}"
+      style="width: 100%"
+    />
+    <h1>{{ employee.name }} {{ employee.surname }}</h1>
+    <p class="title">{{ employee.position }}, {{ employee.departement }}</p>
+    <p>Salary: ${{ employee.salary }}</p>
+    <div class="social-links">
+      <a href="#"><i class="fa fa-dribbble"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+      <a href="#"><i class="fa fa-facebook"></i></a>
+    </div>
+    <p><button (click)="deleteEmployee()">Delete</button></p>
+    <p><button (click)="toggleEditForm()">Update</button></p>
+  
+    <!-- Update Form -->
+    <form *ngIf="showForm" (ngSubmit)="updateEmployee()">
+      <div>
+        <label for="nom">Name:</label>
+        <input type="text" id="nom" [(ngModel)]="editableEmployee.name" name="name" />
+      </div>
+      <div>
+        <label for="prenom">First Name:</label>
+        <input type="text" id="prenom" [(ngModel)]="editableEmployee.surname" name="surname" />
+      </div>
+      <div>
+        <label for="position">Job:</label>
+        <input
+          type="text"
+          id="position"
+          [(ngModel)]="editableEmployee.position"
+          name="position"
+        />
+      </div>
+      <div>
+        <label for="departement">Department:</label>
+        <input
+          type="text"
+          id="departement"
+          [(ngModel)]="editableEmployee.departement"
+          name="departement"
+        />
+      </div>
+      <div>
+        <label for="salary">salary:</label>
+        <input type="number" id="salary" [(ngModel)]="editableEmployee.salary" name="salary" />
+      </div>
+      <button type="submit">Save</button>
+      <button type="button" (click)="toggleEditForm()">Cancel</button>
+    </form>
+  </div>
+  
